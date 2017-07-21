@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Angular Custom Select</title>
+
+        <meta name="description" content="overview &amp; stats" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- basic styles -->
+
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" />
+
+        
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        
+        
+        <link rel="stylesheet" href="css/AngularCustomSelectTree.css" />
+        
+    </head>
+
+    <body ng-app="Demo">
+        <div class="container" ng-controller="DemoController">
+            <h1>Custom Select Tree Example</h1>
+
+            <h2>Complex objects</h2>
+            <p>Selected state: {{ state }}</p>
+            <div class="form-group" style="width: 300px">
+				<div custom-select-tree="item.Nombre as item.Nombre for item in searchCiudades($searchTerm)" ng-model="state" custom-select-options="ddlSearchCiudades"></div>
+			</div>
+           
+            
+
+        </div>
+        <!-- basic scripts -->
+
+        <!--[if !IE]> -->
+        
+        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <!-- <![endif]-->
+
+        <!--[if IE]>
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <![endif]-->
+
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="js/angular.min.js"></script>
+		<script src="js/angular-sanitize.min.js"></script>
+        <script src="js/customSelectTree.js"></script>
+        <script>
+            (function () {
+                var app = angular.module('Demo', ['SelectTreeAR']);
+
+                app.controller('DemoController', ['$scope', '$timeout', '$q', function ($scope, $timeout, $q) {                   
+
+                    $scope.state = 'not Select';
+					
+                    $scope.states = [
+                        { 
+						  "__children__":[
+									{ 
+									  "__children__":[
+														{ 
+														  "__children__":[
+															{ 
+															  "__children__":[],
+															  "__expanded__":false,
+															  "Nombre":"Cruz 1", 
+															}
+														  ],
+														  "__expanded__":false,
+														  "Nombre":"Cruz", 
+														}
+													 ],
+									  "__expanded__":false,
+									  "Nombre":"Candelaria", 
+									},
+									{ 
+									  "__children__":[],
+									  "__expanded__":false,
+									  "Nombre":"Luruaco"
+									},
+									{ 
+									  "__children__":[],
+									  "__expanded__":false,
+									  "Nombre":"Puerto Colombia", 
+									},
+									{ 
+									  "__children__":[],
+									  "__expanded__":false,
+									  "Nombre":"Santa Lucia", 
+									}
+								 ],
+						  "__expanded__":false,
+						  "Nombre":"Atlántico", 
+						}                       
+                    ];
+                   
+				    $scope.searchCiudades = function (term) {
+						var deferred = $q.defer();
+						if (!term) {
+							term = "_";
+						}
+						/*
+						eXAMPLE SERVICE
+						ajax(
+						url,
+						obj,
+						function (response) {
+							deferred.resolve(response.rows);
+						});*/
+						deferred.resolve($scope.states);
+						
+						return deferred.promise;
+					}
+				   
+                    $scope.ddlSearchCiudades = {
+						iconLeaf: "fa fa-map-marker",
+						iconExpand: "fa fa-plus",
+						iconCollapse: "fa fa-minus",
+						fieldChildren: "__children__",
+						expanded: "__expanded__",
+						orderByField: "Nombre",
+						orderByReverse: false,
+						async: true,
+						textSearch: "Buscar,,,",
+						onSelect: function(item){
+							
+						}
+					};
+                    
+                   
+                }]);
+                
+            })();
+        </script>
+    </body>
+</html>

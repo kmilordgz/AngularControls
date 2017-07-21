@@ -1,0 +1,28 @@
+{
+  "name": "js-custom-select-tree",
+  "version": "0.0.1",
+  "homepage": "https://github.com/kmilordgz/AngularCustomSelectTree",
+  "authors": [
+    "Camilo andres rodriguez :) <kmilordgz@gmail.com>"
+  ],
+  "main": [
+    "js/customSelectTree.js",
+    "css/AngularCustomSelectTree.css"
+  ],
+  "description": "A custom auto-complete select box and select tree for AngularJS",
+  "keywords": [
+    "angular",
+    "angularjs",
+    "select",
+	"select tree",
+    "dropdown"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
