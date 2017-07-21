@@ -60,6 +60,8 @@ $scope.states = [
 ### Custom options
 
 ```JS
+/*Module 'SelectTreeAR'*/
+
  $scope.ddlSearchCiudades = {
 	iconLeaf: "fa fa-map-marker",
 	iconExpand: "fa fa-plus",
