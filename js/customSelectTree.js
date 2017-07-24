@@ -139,7 +139,7 @@
                         '<span><div ng-bind-html="displayText"></div></span>' +
 						'<span class="new" ng-hide="valueFn(childScope, locals)==\'-1\'?false:true">Nuevo</span><b></b>' +
 					'</a>' +
-					'<div id="customSelectTreeDropdownMenuTree" class="dropdown-menu">' +
+					'<div class="dropdown-menu customSelectTreeDropdownMenuTree">' +
 						'<div stop-propagation="click" class="custom-select-tree-search">' +
 						'<input class="form-control ' + attrs.selectClass + '" type="text" placeholder="'+options.textSearch+'" autocomplete="off" ng-model="searchTerm" />' +
 						'</div>' +                       
@@ -483,7 +483,7 @@
                     childScope.expandCollapse = function (item) {
                         if (item[options.expanded] != null) {
                             item[options.expanded] = item[options.expanded] ? false : true;
-                            $('#customSelectTreeDropdownMenuTree').dropdown('toggle');
+                            $('.customSelectTreeDropdownMenuTree').dropdown('toggle');
                         }
                     };
 
