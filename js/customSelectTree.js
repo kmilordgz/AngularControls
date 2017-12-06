@@ -1,4 +1,4 @@
-﻿var esMovil = {
+var esMovil = {
     Android: function () {
         return navigator.userAgent.match(/Android/i);
     },
@@ -76,8 +76,7 @@
         fieldChildren: null,
         expanded: null,
         orderByField: null,
-        orderByReverse: false,
-		textSearch: "Search.."
+        orderByReverse: false
     });
 
     module.directive('customSelectTree', ['$parse', '$compile', '$timeout', '$q', 'customSelectDefaults', function ($parse, $compile, $timeout, $q, baseOptions) {
@@ -139,45 +138,45 @@
                         '<span><div ng-bind-html="displayText"></div></span>' +
 						'<span class="new" ng-hide="valueFn(childScope, locals)==\'-1\'?false:true">Nuevo</span><b></b>' +
 					'</a>' +
-					'<div class="dropdown-menu customSelectTreeDropdownMenuTree">' +
+					'<div class="dropdown-menu">' +
 						'<div stop-propagation="click" class="custom-select-tree-search">' +
-						'<input class="form-control ' + attrs.selectClass + '" type="text" placeholder="'+options.textSearch+'" autocomplete="off" ng-model="searchTerm" />' +
+							'<input class="form-control ' + attrs.selectClass + '" type="text" placeholder="Buscar.." autocomplete="off" ng-model="searchTerm" />' +
 						'</div>' +                       
 						'<ul role="menu">' +
 							'<li role="presentation" ng-repeat="' + valueName + ' in matches | orderBy : \'' + options.orderByField + '\' : ' + options.orderByReverse + '">' +
-								'<a role="menuitem" tabindex="-1" >' +
-                                    '<i ng-click="expandCollapse(' + valueName + ')" ng-class="getClass(' + valueName + ')">&nbsp;</i>' +
-                                    '<label style="width: 90%; font-weight: normal; margin: 0px; cursor: pointer; display: -webkit-inline-box;" ng-click="select(' + valueName + ')"  ng-bind-html="' + itemTemplate + '"></label>' +
+								'<a role="menuitem" tabindex="-1" ng-click="select(' + valueName + ')" >' +
+                                    '<i ng-click="expandCollapse($event, ' + valueName + ')" ng-class="getClass(' + valueName + ')">&nbsp;</i>' +
+                                    '<label style="font-weight: normal; margin: 3px 0px; cursor: pointer; display: -webkit-inline-box;"   ng-bind-html="' + itemTemplate + '"></label>' +
 								'</a>' +
                                 '<ul role="menu" ng-show="' + valueName + '.' + options.expanded + '">' +
                                     '<li role="presentation" ng-repeat="' + valueName + ' in ' + valueName + '.' + options.fieldChildren + ' | orderBy : \'' + options.orderByField + '\' : ' + options.orderByReverse + '">' +
-								       '<a role="menuitem" tabindex="-1" >' +
-                                            '<i ng-click="expandCollapse(' + valueName + ')" ng-class="getClass(' + valueName + ')">&nbsp;</i>' +
-                                            '<label style="width: 90%; font-weight: normal; margin: 0px; cursor: pointer; display: -webkit-inline-box;" ng-click="select(' + valueName + ')"  ng-bind-html="' + itemTemplate + '"></label>' +
+								       '<a role="menuitem" tabindex="-1" ng-click="select(' + valueName + ')" >' +
+                                            '<i ng-click="expandCollapse($event, ' + valueName + ')" ng-class="getClass(' + valueName + ')">&nbsp;</i>' +
+                                            '<label style="font-weight: normal; margin: 3px 0px; cursor: pointer; display: -webkit-inline-box;" ng-click="select(' + valueName + ')"  ng-bind-html="' + itemTemplate + '"></label>' +
 								        '</a>' +
                                         '<ul role="menu" ng-show="' + valueName + '.' + options.expanded + '">' +
                                             '<li role="presentation" ng-repeat="' + valueName + ' in ' + valueName + '.' + options.fieldChildren + ' | orderBy : \'' + options.orderByField + '\' : ' + options.orderByReverse + '">' +
-								               '<a role="menuitem" tabindex="-1" >' +
-                                                    '<i ng-click="expandCollapse(' + valueName + ')" ng-class="getClass(' + valueName + ')">&nbsp;</i>' +
-                                                    '<label style="width: 90%; font-weight: normal; margin: 0px; cursor: pointer; display: -webkit-inline-box;" ng-click="select(' + valueName + ')"  ng-bind-html="' + itemTemplate + '"></label>' +
+								               '<a role="menuitem" tabindex="-1" ng-click="select(' + valueName + ')" >' +
+                                                    '<i ng-click="expandCollapse($event, ' + valueName + ')" ng-class="getClass(' + valueName + ')">&nbsp;</i>' +
+                                                    '<label style="font-weight: normal; margin: 3px 0px; cursor: pointer; display: -webkit-inline-box;" ng-click="select(' + valueName + ')"  ng-bind-html="' + itemTemplate + '"></label>' +
 								                '</a>' +
                                                 '<ul role="menu" ng-show="' + valueName + '.' + options.expanded + '">' +
                                                     '<li role="presentation" ng-repeat="' + valueName + ' in ' + valueName + '.' + options.fieldChildren + ' | orderBy : \'' + options.orderByField + '\' : ' + options.orderByReverse + '">' +
-								                       '<a role="menuitem" tabindex="-1" >' +
-                                                            '<i ng-click="expandCollapse(' + valueName + ')" ng-class="getClass(' + valueName + ')">&nbsp;</i>' +
-                                                            '<label style="width: 90%; font-weight: normal; margin: 0px; cursor: pointer; display: -webkit-inline-box;" ng-click="select(' + valueName + ')"  ng-bind-html="' + itemTemplate + '"></label>' +
+								                       '<a role="menuitem" tabindex="-1" ng-click="select(' + valueName + ')" >' +
+                                                            '<i ng-click="expandCollapse($event, ' + valueName + ')" ng-class="getClass(' + valueName + ')">&nbsp;</i>' +
+                                                            '<label style="font-weight: normal; margin: 3px 0px; cursor: pointer; display: -webkit-inline-box;" ng-click="select(' + valueName + ')"  ng-bind-html="' + itemTemplate + '"></label>' +
 								                        '</a>' +
                                                         '<ul role="menu" ng-show="' + valueName + '.' + options.expanded + '">' +
                                                             '<li role="presentation" ng-repeat="' + valueName + ' in ' + valueName + '.' + options.fieldChildren + ' | orderBy : \'' + options.orderByField + '\' : ' + options.orderByReverse + '">' +
-								                               '<a role="menuitem" tabindex="-1" >' +
-                                                                    '<i ng-click="expandCollapse(' + valueName + ')" ng-class="getClass(' + valueName + ')">&nbsp;</i>' +
-                                                                    '<label style="width: 90%; font-weight: normal; margin: 0px; cursor: pointer; display: -webkit-inline-box;" ng-click="select(' + valueName + ')"  ng-bind-html="' + itemTemplate + '"></label>' +
+								                               '<a role="menuitem" tabindex="-1" ng-click="select(' + valueName + ')" >' +
+                                                                    '<i ng-click="expandCollapse($event, ' + valueName + ')" ng-class="getClass(' + valueName + ')">&nbsp;</i>' +
+                                                                    '<label style="font-weight: normal; margin: 3px 0px; cursor: pointer; display: -webkit-inline-box;" ng-click="select(' + valueName + ')"  ng-bind-html="' + itemTemplate + '"></label>' +
 								                                '</a>' +
                                                                 '<ul role="menu" ng-show="' + valueName + '.' + options.expanded + '">' +
                                                                     '<li role="presentation" ng-repeat="' + valueName + ' in ' + valueName + '.' + options.fieldChildren + ' | orderBy : \'' + options.orderByField + '\' : ' + options.orderByReverse + '">' +
-								                                       '<a role="menuitem" tabindex="-1" >' +
-                                                                            '<i ng-click="expandCollapse(' + valueName + ')" ng-class="getClass(' + valueName + ')">&nbsp;</i>' +
-                                                                            '<label style="width: 90%; font-weight: normal; margin: 0px; cursor: pointer; display: -webkit-inline-box;" ng-click="select(' + valueName + ')"  ng-bind-html="' + itemTemplate + '"></label>' +
+								                                       '<a role="menuitem" tabindex="-1" ng-click="select(' + valueName + ')" >' +
+                                                                            '<i ng-click="expandCollapse($event, ' + valueName + ')" ng-class="getClass(' + valueName + ')">&nbsp;</i>' +
+                                                                            '<label style="font-weight: normal; margin: 3px 0px; cursor: pointer; display: -webkit-inline-box;" ng-click="select(' + valueName + ')"  ng-bind-html="' + itemTemplate + '"></label>' +
 								                                        '</a>' +
 							                                        '</li>' +
                                                                 '</ul>' +
@@ -474,19 +473,22 @@
                         //setDisplayText(displayFn(scope, locals));
                         childScope.displayText = displayFn(childScope, locals) || options.displayText;
                         controller.$setViewValue(value);
-
+                        
                         anchorElement.focus();
                         inputElement.val("");
                         typeof options.onSelect === "function" && options.onSelect(item);
+                        //anchorElement.dropdown('toggle');
                     };
 
-                    childScope.expandCollapse = function (item) {
+                    childScope.expandCollapse = function (event, item) {
                         if (item[options.expanded] != null) {
-                            item[options.expanded] = item[options.expanded] ? false : true;
-                            $('.customSelectTreeDropdownMenuTree').dropdown('toggle');
+                            item[options.expanded] = item[options.expanded] ? false : true;                                                        
+                            childScope.select(item);
+                            event.preventDefault();
+                            event.stopPropagation();
                         }
                     };
-
+                                      
                     childScope.getClass = function (item) {
                         if (item[options.fieldChildren] != null) {
                             if (item[options.fieldChildren].length == 0) {
@@ -496,10 +498,15 @@
                             } else if (!item[options.expanded]) {
                                 return options.iconExpand;
                             }
+                        } else {
+                            return options.iconLeaf;
                         }
                     };
 
-                    childScope.add = function (searchTerm) {                        
+                    childScope.add = function (searchTerm) {
+                        if (searchTerm == "" || searchTerm == undefined) {
+                            alertify.error("Para agregar un nuevo elemento ingreselo en el campo de busqueda.");
+                        } else {
                             $q.when(options.onAdd(searchTerm), function (item) {
                                 if (!item) return;
                                 var locals = {};
@@ -513,7 +520,8 @@
                                 };
                                 childScope.matches.push(item);
                                 childScope.select(item);
-                            });                        
+                            });
+                        }
                     };
 
                     childScope.format = format;
